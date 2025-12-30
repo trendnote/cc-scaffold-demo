@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Node
+node_modules/
+npm-debug.log*
+.next/
+dist/
+build/
+.cache/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+*.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Testing
+.coverage
+htmlcov/
+coverage/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Claude Code (로컬 설정만)
+.claude/local/
+settings.local.json
+
+# Docker
+docker-compose.override.yml
+
+# Temporary
+temp/
+tmp/
+*.tmp
+.cache/
+
+# Misc
+.DS_Store
