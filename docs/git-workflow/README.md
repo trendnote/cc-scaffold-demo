@@ -7,11 +7,11 @@ Git/GitHub 기반 개발 프로세스를 자동화하는 Commands와 Skills 모�
 ```
 git-workflow-package/
 ├── .claude/
-│   ├── skills/      (3개) - 개발 가이드
-│   └── commands/    (11개) - 자동화 명령어
+│   ├── skills/         개발 가이드
+│   └── commands/       자동화 명령어
 └── docs/
     └── git-workflow/
-        └── README.md - 상세 가이드
+        └── README.md   상세 가이드
 ```
 
 ## 🚀 빠른 시작
@@ -67,26 +67,36 @@ git push -u origin develop
 
 ## 📋 Commands
 
-### 필수 (Phase 1)
+### 초기 설정 (1회만)
+
+| Command | 설명 |
+|---------|------|
+| `/git-init` | Git 저장소 초기화 |
+| `/setup-cicd` | CI/CD 파이프라인 설정 |
+| `/setup-pre-commit` | Pre-commit Hook 설정 |
+
+### 개발 사이클 (매일 반복)
 
 | Command | 설명 | 사용 빈도 |
 |---------|------|----------|
 | `/issue-create` | GitHub Issue 자동 생성 | 매 Task |
 | `/branch-create` | Feature 브랜치 생성 | 매 Task |
-| `/worktree-create` | Worktree 생성 (고급) | 병렬 작업 시 |
 | `/commit` | Conventional Commits 적용 | 하루 5-10회 |
 | `/pr-create` | PR 자동 생성 | 매 Task |
+| `/pr-cleanup` | 브랜치 정리 | 매 Task |
 
-### 선택 (Phase 3)
+### 고급 기능 (선택)
+
+| Command | 설명 | 사용 시 |
+|---------|------|---------|
+| `/worktree-create` | Worktree 생성 | 병렬 작업 필요 시 |
+| `/worktree-cleanup` | Worktree 정리 | Worktree 사용 후 |
+
+### 릴리즈 (주기적)
 
 | Command | 설명 |
 |---------|------|
-| `/pr-cleanup` | 브랜치 정리 |
-| `/worktree-cleanup` | Worktree 정리 |
-| `/git-init` | Git 저장소 초기화 |
-| `/setup-cicd` | CI/CD 파이프라인 설정 |
-| `/setup-pre-commit` | Pre-commit Hook 설정 |
-| `/release-create` | Release 생성 |
+| `/release-create` | Production 릴리즈 생성 |
 
 ## 🎓 Skills
 
@@ -136,9 +146,9 @@ Issue 정보를 기반으로 브랜치명을 자동 생성합니다.
 # → PR #2 생성, CI 자동 실행
 ```
 
-## 🎯 워크플로우 비교
+## 🎯 워크플로우
 
-### Feature Branch (일반)
+### 일반 개발 (Feature Branch)
 
 ```bash
 /issue-create → /branch-create → 개발 → /commit → /pr-create → /pr-cleanup
@@ -146,13 +156,17 @@ Issue 정보를 기반으로 브랜치명을 자동 생성합니다.
 
 **사용 시기:** 1개 Task 집중, 순차적 개발
 
-### Worktree (고급)
+### 병렬 개발 (Worktree)
 
 ```bash
 /issue-create → /worktree-create → 개발 → /commit → /pr-create → /worktree-cleanup
 ```
 
-**사용 시기:** 병렬 작업, 긴급 수정 빈번
+**사용 시기:** 여러 Task 병렬 작업, 긴급 수정 빈번
+
+**선택 가이드:**
+- 대부분의 경우 → Feature Branch
+- 병렬 작업 필요 시 → Worktree
 
 ## 📊 효과
 
