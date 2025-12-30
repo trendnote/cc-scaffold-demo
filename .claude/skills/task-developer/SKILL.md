@@ -119,6 +119,13 @@ Task Plan의 각 Step을 30분-1시간 단위로 구현합니다:
   - 아키텍처 변경 시: ADR 작성
   - 사용법 변경 시: README 업데이트
 
+- [ ] **Execution Log 작성** (필수)
+  - `logs/task-{ID}-{YYYYMMDD-HHMMSS}.md` 파일 생성
+  - Task 정보, 실행 시간, Pre-Flight Reasoning 결과 기록
+  - Step별 실행 내역, 테스트 결과, Quality Gates 기록
+  - Git commit 정보, 성공/실패 여부, 주요 이슈 기록
+  - **주의**: 민감 데이터 절대 기록 금지 (API 키, 비밀번호, 개인정보 등)
+
 - [ ] **Task 완료 보고**
   - Acceptance Criteria 충족 확인
   - 완료된 내용 요약

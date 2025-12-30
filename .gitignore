@@ -39,6 +39,8 @@ Thumbs.db
 # Logs
 *.log
 logs/
+!logs/README.md
+!logs/TEMPLATE.md
 
 # Testing
 .coverage
