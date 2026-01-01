@@ -39,9 +39,17 @@ Thumbs.db
 
 # Logs
 *.log
-logs/
-!logs/README.md
-!logs/TEMPLATE.md
+
+# Task execution logs are tracked in Git for project history
+# Include logs directory and all markdown files
+!logs/
+logs/**/*.md
+
+# Exclude only debug/error logs and temporary log files
+logs/*.log
+logs/debug-*
+logs/error-*
+logs/temp-*
 
 # Testing
 .coverage
