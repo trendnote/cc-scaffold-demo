@@ -235,3 +235,28 @@ class MilvusClient:
 
 # Global singleton instance
 milvus_client = MilvusClient()
+
+
+def get_milvus_collection(collection_name: str = "documents") -> Collection:
+    """
+    Milvus Collection을 가져오는 헬퍼 함수
+
+    Args:
+        collection_name: Collection 이름
+
+    Returns:
+        Collection: Milvus Collection 객체
+
+    Raises:
+        ValueError: Collection이 존재하지 않을 때
+    """
+    if not connections.has_connection("default"):
+        milvus_client.connect()
+
+    if not utility.has_collection(collection_name):
+        raise ValueError(f"Collection '{collection_name}'이 존재하지 않습니다")
+
+    collection = Collection(collection_name)
+    collection.load()
+
+    return collection
