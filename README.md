@@ -95,10 +95,126 @@ docker-compose down -v
 1. Docker Desktop 메모리 설정 증가 (최소 8GB)
 2. 불필요한 컨테이너 중지
 
+## Milvus Vector Database
+
+### Collection 생성
+
+Task 1.3에서 구현한 Milvus Collection을 생성합니다:
+
+```bash
+cd backend
+source venv/bin/activate
+python scripts/create_milvus_collection.py
+```
+
+### Collection 스키마
+
+- **id** (INT64): Auto-generated primary key
+- **document_id** (VARCHAR): Reference to PostgreSQL documents table (UUID)
+- **content** (VARCHAR): Text content of chunk (max 2000 chars)
+- **embedding** (FLOAT_VECTOR): 768-dimensional embedding vector
+- **chunk_index** (INT32): Index within document
+- **metadata** (JSON): Additional metadata (page_number, section, etc.)
+
+### Index Configuration
+
+- **Type**: HNSW (Hierarchical Navigable Small World)
+- **Metric**: COSINE similarity
+- **Parameters**: M=16, efConstruction=256
+
+### 더미 데이터 테스트
+
+```bash
+cd backend
+source venv/bin/activate
+python scripts/test_milvus_operations.py
+```
+
+### Attu UI 확인
+
+브라우저에서 http://localhost:8080 접속하여 Collection 확인
+
+### 단위 테스트
+
+```bash
+cd backend
+source venv/bin/activate
+pytest tests/test_milvus.py -v
+```
+
+## LLM Provider Configuration
+
+### Ollama (Local)
+
+Task 1.4에서 구현한 Ollama 기반 LLM/Embedding provider를 사용합니다.
+
+1. Start Ollama container:
+   ```bash
+   docker-compose up -d ollama
+   ```
+
+2. Download models:
+   ```bash
+   docker exec -it ollama ollama pull llama3
+   docker exec -it ollama ollama pull nomic-embed-text
+   ```
+
+3. Verify models:
+   ```bash
+   docker exec -it ollama ollama list
+   ```
+
+4. Test integration:
+   ```bash
+   cd backend
+   source venv/bin/activate
+   python scripts/test_ollama_integration.py
+   ```
+
+### OpenAI (Cloud) - Phase 2
+
+1. Set environment variables in `.env`:
+   ```bash
+   LLM_PROVIDER=openai
+   OPENAI_API_KEY=your-api-key
+   ```
+
+2. Restart application
+
+### Configuration
+
+Environment variables (`.env`):
+```
+LLM_PROVIDER=ollama  # or "openai"
+
+# Ollama
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_LLM_MODEL=llama3
+OLLAMA_EMBED_MODEL=nomic-embed-text
+
+# OpenAI (optional)
+OPENAI_API_KEY=
+OPENAI_LLM_MODEL=gpt-4
+OPENAI_EMBED_MODEL=text-embedding-3-small
+```
+
+### Switching Providers
+
+No code changes required:
+1. Change `LLM_PROVIDER` in `.env`
+2. Set provider-specific variables
+3. Restart application
+
+### Unit Tests
+
+```bash
+cd backend
+source venv/bin/activate
+pytest tests/test_ollama.py -v
+```
+
 ## 다음 단계
-- Task 1.2: PostgreSQL 스키마 및 마이그레이션 설정
-- Task 1.3: Milvus Collection 생성 및 연결 테스트
-- Task 1.4: Ollama 모델 다운로드
+- Task 1.5: LangChain RAG Chain 구성
 
 ## 참고 문서
 - [PRD](docs/prd/rag-platform-prd.md)
