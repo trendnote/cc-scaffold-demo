@@ -1,0 +1,12 @@
+Multilingual Text File
+
+English: Hello World
+한국어: 안녕하세요
+日本語: こんにちは
+中文: 你好
+Español: Hola
+Français: Bonjour
+Deutsch: Hallo
+Русский: Здравствуйте
+العربية: مرحبا
+हिन्दी: नमस्ते

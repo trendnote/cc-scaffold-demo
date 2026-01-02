@@ -1,0 +1,11 @@
+Sample TXT Document
+This is a valid text file for testing purposes.
+안녕하세요. 한글 테스트입니다.
+
+Section 1
+This is the first section with some content.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+Section 2
+This is the second section.
+End of document.
