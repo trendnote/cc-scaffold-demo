@@ -3,10 +3,12 @@
 
 Task 2.3-2.6에서 점진적으로 완성되는 통합 검색 서비스입니다.
 Task 2.3 버전: 벡터 검색만 포함
+Task 2.4 버전: 권한 기반 필터링 추가
 """
 
 from typing import List, Optional
 from app.schemas.search import DocumentSource
+from app.schemas.user import UserContext
 from app.services.vector_search import VectorSearchService, SearchResult
 import logging
 
@@ -25,23 +27,30 @@ class SearchService:
         self,
         query: str,
         limit: int = 5,
-        user_id: Optional[str] = None
+        user: Optional[UserContext] = None
     ) -> List[DocumentSource]:
         """
-        문서 검색 (Task 2.3 버전: 벡터 검색만)
+        문서 검색 (Task 2.4 버전: 권한 필터링 포함)
 
         Args:
             query: 검색어
             limit: 최대 결과 수
-            user_id: 사용자 ID (Task 2.4에서 사용)
+            user: 사용자 컨텍스트 (권한 필터링용)
 
         Returns:
-            List[DocumentSource]: 검색된 문서 출처 리스트
+            List[DocumentSource]: 검색된 문서 출처 리스트 (권한 필터링 완료)
         """
-        logger.info(f"문서 검색 시작: query='{query}', limit={limit}")
+        logger.info(
+            f"문서 검색 시작: query='{query}', limit={limit}, "
+            f"user={user.user_id if user else 'anonymous'}"
+        )
 
-        # Step 1: 벡터 검색
-        search_results = self.vector_search.search(query, top_k=limit)
+        # Step 1: 벡터 검색 (권한 필터링 포함)
+        search_results = self.vector_search.search(
+            query,
+            top_k=limit,
+            user=user
+        )
 
         # Step 2: DocumentSource 스키마로 변환
         sources = [
@@ -56,6 +65,9 @@ class SearchService:
             for result in search_results
         ]
 
-        logger.info(f"검색 완료: query='{query}', results={len(sources)}")
+        logger.info(
+            f"검색 완료: query='{query}', results={len(sources)}, "
+            f"user={user.user_id if user else 'anonymous'}"
+        )
 
         return sources

@@ -2,6 +2,7 @@
 벡터 검색 서비스
 
 Milvus 벡터 데이터베이스에서 COSINE 유사도 기반 검색을 수행합니다.
+권한 기반 필터링을 지원합니다.
 """
 
 from typing import List, Optional
@@ -11,6 +12,8 @@ import logging
 
 from app.db.milvus_client import get_milvus_collection
 from app.services.embedding_service import OllamaEmbeddingService
+from app.schemas.user import UserContext
+from app.services.access_control import AccessControlService
 
 logger = logging.getLogger(__name__)
 
@@ -65,29 +68,38 @@ class VectorSearchService:
         self,
         query: str,
         top_k: int = 5,
-        filter_expr: Optional[str] = None
+        user: Optional[UserContext] = None
     ) -> List[SearchResult]:
         """
-        벡터 유사도 검색 실행
+        벡터 유사도 검색 실행 (권한 필터링 포함)
 
         Args:
             query: 검색어
             top_k: 반환할 최대 결과 수
-            filter_expr: Milvus 필터 표현식 (선택적, Task 2.4에서 사용)
+            user: 사용자 컨텍스트 (권한 필터링용)
 
         Returns:
-            List[SearchResult]: 검색 결과 (관련도 내림차순 정렬)
+            List[SearchResult]: 검색 결과 (권한 필터링 및 관련도 정렬 완료)
 
         Raises:
             ValueError: Collection이 없거나 검색 실패 시
         """
         self._ensure_collection()
 
-        # Step 1: 쿼리 임베딩 생성
+        # Step 1: 권한 필터 표현식 생성
+        filter_expr = None
+        if user:
+            filter_expr = AccessControlService.build_filter_expression(user)
+            logger.info(
+                f"권한 필터 적용: user={user.user_id}, "
+                f"filter='{filter_expr}'"
+            )
+
+        # Step 2: 쿼리 임베딩 생성
         logger.info(f"검색 시작: query='{query[:50]}...', top_k={top_k}")
         query_embedding = self.embedding_service.embed_query(query)
 
-        # Step 2: Milvus 검색 실행
+        # Step 3: Milvus 검색 실행 (필터 포함)
         try:
             search_results = self.collection.search(
                 data=[query_embedding],
@@ -104,18 +116,19 @@ class VectorSearchService:
                 ]
             )
 
-            # Step 3: 결과 파싱 및 필터링
+            # Step 4: 결과 파싱 및 필터링
             results = self._parse_results(search_results[0])
 
             logger.info(
-                f"검색 완료: found={len(results)}, "
+                f"권한 필터링 검색 완료: found={len(results)}, "
+                f"user={user.user_id if user else 'anonymous'}, "
                 f"avg_score={sum(r.relevance_score for r in results) / len(results) if results else 0:.3f}"
             )
 
             return results
 
         except Exception as e:
-            logger.error(f"벡터 검색 실패: {e}")
+            logger.error(f"권한 기반 벡터 검색 실패: {e}")
             raise ValueError(f"벡터 검색 실패: {e}")
 
     def _parse_results(self, raw_results) -> List[SearchResult]:
