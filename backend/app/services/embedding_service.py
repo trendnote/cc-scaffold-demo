@@ -141,6 +141,35 @@ class OllamaEmbeddingService:
             logger.error(f"임베딩 생성 실패: {e}")
             raise EmbeddingServiceError(f"임베딩 생성 실패: {e}")
 
+    def embed_query(self, query: str) -> List[float]:
+        """
+        검색 쿼리 임베딩 생성
+
+        Args:
+            query: 검색어 (이미 검증 완료)
+
+        Returns:
+            List[float]: 768차원 임베딩 벡터
+
+        Raises:
+            EmbeddingServiceError: 임베딩 생성 실패
+        """
+        logger.info(f"검색 쿼리 임베딩 생성: '{query[:50]}...'")
+
+        try:
+            embedding = self.embed_text(query)
+
+            logger.info(
+                f"임베딩 생성 성공: dimension={len(embedding)}, "
+                f"query_length={len(query)}"
+            )
+
+            return embedding
+
+        except Exception as e:
+            logger.error(f"검색 쿼리 임베딩 실패: {e}")
+            raise EmbeddingServiceError(f"검색 쿼리 임베딩 실패: {e}")
+
     def embed_batch(self, texts: List[str]) -> List[List[float]]:
         """
         배치 텍스트 임베딩 생성
