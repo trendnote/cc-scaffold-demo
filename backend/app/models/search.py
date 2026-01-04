@@ -100,7 +100,9 @@ class SearchResponse(Base):
         query_id (UUID): Foreign key to search_queries table (unique)
         answer (str): The generated answer text
         sources (dict): JSON array of source documents used
-        response_time_ms (int): Time taken to generate response in milliseconds
+        performance (dict): Performance metrics (embedding_time_ms, search_time_ms, llm_time_ms, total_time_ms)
+        response_metadata (dict): Response metadata (is_fallback, fallback_reason, model_used, search_result_count)
+        response_time_ms (int): Time taken to generate response in milliseconds (deprecated, use performance.total_time_ms)
         timestamp (datetime): When the response was generated
 
     Relationships:
@@ -145,9 +147,19 @@ class SearchResponse(Base):
         nullable=False,
         comment="JSON array of source documents with metadata",
     )
+    performance = Column(
+        JSONB,
+        nullable=True,
+        comment="Performance metrics (embedding_time_ms, search_time_ms, llm_time_ms, total_time_ms)",
+    )
+    response_metadata = Column(
+        JSONB,
+        nullable=True,
+        comment="Response metadata (is_fallback, fallback_reason, model_used, search_result_count)",
+    )
     response_time_ms = Column(
         Integer,
-        nullable=False,
+        nullable=True,
         comment="Time taken to generate response in milliseconds",
     )
     timestamp = Column(
