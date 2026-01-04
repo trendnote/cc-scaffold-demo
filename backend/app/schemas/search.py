@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field, field_validator
 from typing import List, Optional
 from datetime import datetime
+import uuid
 import re
 
 
@@ -77,10 +78,10 @@ class DocumentSource(BaseModel):
 
 class PerformanceMetrics(BaseModel):
     """성능 측정 정보"""
-    embedding_time_ms: int = Field(..., description="임베딩 생성 시간 (ms)")
-    search_time_ms: int = Field(..., description="벡터 검색 시간 (ms)")
-    llm_time_ms: int = Field(..., description="LLM 답변 생성 시간 (ms)")
-    total_time_ms: int = Field(..., description="전체 처리 시간 (ms)")
+    embedding_time_ms: int = Field(..., ge=0, description="임베딩 생성 시간 (ms)")
+    search_time_ms: int = Field(..., ge=0, description="벡터 검색 시간 (ms)")
+    llm_time_ms: int = Field(..., ge=0, description="LLM 답변 생성 시간 (ms)")
+    total_time_ms: int = Field(..., ge=0, description="전체 처리 시간 (ms)")
 
 
 class ResponseMetadata(BaseModel):
@@ -88,15 +89,18 @@ class ResponseMetadata(BaseModel):
     is_fallback: bool = Field(default=False, description="Fallback 여부")
     fallback_reason: Optional[str] = Field(None, description="Fallback 이유")
     model_used: str = Field(..., description="사용된 LLM 모델")
-    search_result_count: int = Field(..., description="검색 결과 개수")
+    search_result_count: int = Field(..., ge=0, description="검색 결과 개수")
 
 
 class SearchQueryResponse(BaseModel):
-    """검색 응답 스키마"""
-    query_id: str = Field(..., description="쿼리 ID")
+    """검색 응답 스키마 (Task 2.6 완성)"""
+    query_id: str = Field(
+        default_factory=lambda: f"qry_{uuid.uuid4().hex[:12]}",
+        description="쿼리 ID (자동 생성)"
+    )
     query: str = Field(..., description="검색어")
     answer: str = Field(..., description="생성된 답변")
-    sources: List[DocumentSource] = Field(default=[], description="문서 출처 리스트")
+    sources: List[DocumentSource] = Field(default_factory=list, description="문서 출처 리스트")
     performance: PerformanceMetrics = Field(..., description="성능 측정 정보")
     metadata: ResponseMetadata = Field(..., description="응답 메타데이터")
     timestamp: datetime = Field(default_factory=datetime.utcnow, description="응답 시각")
