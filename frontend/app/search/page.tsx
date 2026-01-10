@@ -1,11 +1,26 @@
 'use client';
 
+import { useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { SearchBar } from '@/components/search/SearchBar';
+import { SearchResults } from '@/components/search/SearchResults';
+import { SearchSkeleton } from '@/components/search/SearchSkeleton';
+import { SearchError } from '@/components/search/SearchError';
 import { useSearch } from '@/hooks/use-search';
-import { Card, CardContent } from '@/components/ui/card';
 
 export default function SearchPage() {
+  const searchParams = useSearchParams();
   const searchMutation = useSearch();
+
+  // URL 쿼리 파라미터에서 검색어 가져오기
+  const queryParam = searchParams.get('query');
+
+  useEffect(() => {
+    if (queryParam) {
+      searchMutation.mutate({ query: queryParam, limit: 5 });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queryParam]);
 
   const handleSearch = (query: string) => {
     searchMutation.mutate({ query, limit: 5 });
@@ -18,20 +33,12 @@ export default function SearchPage() {
 
         <SearchBar onSearch={handleSearch} isLoading={searchMutation.isPending} />
 
-        {searchMutation.isSuccess && (
-          <Card className="w-full max-w-3xl">
-            <CardContent className="pt-6">
-              <pre className="whitespace-pre-wrap">
-                {JSON.stringify(searchMutation.data, null, 2)}
-              </pre>
-            </CardContent>
-          </Card>
-        )}
+        {searchMutation.isPending && <SearchSkeleton />}
+
+        {searchMutation.isSuccess && <SearchResults data={searchMutation.data} />}
 
         {searchMutation.isError && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-            검색 중 오류가 발생했습니다.
-          </div>
+          <SearchError error={searchMutation.error} onRetry={() => searchMutation.reset()} />
         )}
       </div>
     </main>

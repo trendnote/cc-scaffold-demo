@@ -36,6 +36,7 @@ class Settings(BaseSettings):
 
     # 보안 설정 [HARD RULE]
     SECRET_KEY: str  # 필수! .env에서 로드
+    JWT_SECRET: str  # JWT 토큰 서명 키 (필수!)
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 

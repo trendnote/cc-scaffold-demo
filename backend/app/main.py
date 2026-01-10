@@ -4,7 +4,7 @@ from fastapi.exceptions import RequestValidationError
 from contextlib import asynccontextmanager
 import logging
 
-from app.routers import health, search, documents, users
+from app.routers import health, search, documents, users, auth, feedback
 from app.middleware.logging import LoggingMiddleware
 from app.middleware.error_handler import (
     global_exception_handler,
@@ -59,9 +59,11 @@ app.add_exception_handler(RequestValidationError, validation_exception_handler)
 
 # 라우터 등록
 app.include_router(health.router, tags=["Health"])
+app.include_router(auth.router, prefix="/api/v1", tags=["Auth"])
 app.include_router(search.router, prefix="/api/v1/search", tags=["Search"])
 app.include_router(documents.router, prefix="/api/v1/documents", tags=["Documents"])
 app.include_router(users.router, prefix="/api/v1/users", tags=["Users"])
+app.include_router(feedback.router, prefix="/api/v1/feedback", tags=["Feedback"])
 
 
 @app.get("/")

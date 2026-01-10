@@ -1,19 +1,27 @@
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib/auth-context';
+import { Loader2 } from 'lucide-react';
 
 export default function Home() {
+  const { user, isLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading) {
+      if (user) {
+        router.push('/search');
+      } else {
+        router.push('/login');
+      }
+    }
+  }, [user, isLoading, router]);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <Card className="w-[400px]">
-        <CardHeader>
-          <CardTitle>RAG Platform</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <Input placeholder="검색어를 입력하세요" />
-          <Button className="w-full">검색</Button>
-        </CardContent>
-      </Card>
-    </main>
+    <div className="flex min-h-screen items-center justify-center">
+      <Loader2 className="h-8 w-8 animate-spin" />
+    </div>
   );
 }

@@ -30,6 +30,7 @@ export interface ResponseMetadata {
 }
 
 export interface SearchQueryResponse {
+  query_id: string;
   query: string;
   answer: string;
   sources: DocumentSource[];
@@ -82,11 +83,16 @@ export interface LoginResponse {
   access_token: string;
   token_type: string;
   user: {
-    user_id: string;
+    id: string;
     email: string;
-    access_level: number;
+    name: string;
     department: string;
+    access_level: number;
   };
+}
+
+export interface LogoutResponse {
+  message: string;
 }
 
 // Error Response
