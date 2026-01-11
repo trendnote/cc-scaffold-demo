@@ -237,12 +237,12 @@ class MilvusClient:
 milvus_client = MilvusClient()
 
 
-def get_milvus_collection(collection_name: str = "documents") -> Collection:
+def get_milvus_collection(collection_name: str = None) -> Collection:
     """
     Milvus Collection을 가져오는 헬퍼 함수
 
     Args:
-        collection_name: Collection 이름
+        collection_name: Collection 이름 (기본값: 환경 변수에서 로드)
 
     Returns:
         Collection: Milvus Collection 객체
@@ -250,6 +250,9 @@ def get_milvus_collection(collection_name: str = "documents") -> Collection:
     Raises:
         ValueError: Collection이 존재하지 않을 때
     """
+    # 기본값: 환경 변수에서 로드
+    if collection_name is None:
+        collection_name = os.getenv("MILVUS_COLLECTION_NAME", "rag_document_chunks")
     if not connections.has_connection("default"):
         milvus_client.connect()
 

@@ -34,6 +34,9 @@ class Settings(BaseSettings):
     OLLAMA_BASE_URL: str = "http://localhost:11434"
     OLLAMA_MODEL: str = "llama3.2:1b"
 
+    # 문서 저장소 설정 (Task 4.1)
+    DOCUMENT_STORAGE_PATH: str = "/var/lib/rag-platform/documents"
+
     # 보안 설정 [HARD RULE]
     SECRET_KEY: str  # 필수! .env에서 로드
     JWT_SECRET: str  # JWT 토큰 서명 키 (필수!)
@@ -42,6 +45,15 @@ class Settings(BaseSettings):
 
     # 타임아웃 설정
     REQUEST_TIMEOUT_SECONDS: int = 30
+
+    # 로깅 설정 (Task 4.2)
+    LOG_LEVEL: str = "INFO"  # DEBUG, INFO, WARNING, ERROR
+    LOG_FILE_PATH: str = "/var/log/rag-platform/app.log"
+    LOG_JSON_FORMAT: bool = True  # JSON 포맷 사용 여부
+
+    # 로그 보관 정책
+    LOG_RETENTION_DAYS: int = 90  # 검색 로그 90일
+    ERROR_LOG_RETENTION_DAYS: int = 365  # 에러 로그 1년
 
     class Config:
         env_file = ".env"

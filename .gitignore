@@ -55,6 +55,18 @@ logs/temp-*
 .coverage
 htmlcov/
 coverage/
+playwright-report/
+test-results/
+
+# Performance Testing (Task 4.3c)
+backend/performance-reports/
+backend/load-test-report.html
+backend/load-test_*.csv
+backend/response_times.csv
+backend/performance_summary.json
+backend/bandit-report.json
+backend/safety-report.json
+backend/secret-scan-report.txt
 
 # Database
 *.db

@@ -4,7 +4,7 @@ from fastapi.exceptions import RequestValidationError
 from contextlib import asynccontextmanager
 import logging
 
-from app.routers import health, search, documents, users, auth, feedback
+from app.routers import health, search, documents, users, auth, feedback, admin
 from app.middleware.logging import LoggingMiddleware
 from app.middleware.error_handler import (
     global_exception_handler,
@@ -12,21 +12,44 @@ from app.middleware.error_handler import (
 )
 from app.core.config import settings
 from app.utils.logger import configure_logging, get_logger
+from app.utils.file_handler import setup_file_handlers
+from app.scheduler.config import create_scheduler
+from app.scheduler.jobs import register_jobs
 
 logger = logging.getLogger(__name__)
 struct_logger = get_logger(__name__)
+
+scheduler = None
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """앱 시작/종료 시 실행"""
+    global scheduler
+
     # Startup
-    # Task 2.9: 구조화된 로깅 초기화
+    # Task 2.9 & 4.2: 구조화된 로깅 초기화
     configure_logging(log_level=settings.LOG_LEVEL if hasattr(settings, 'LOG_LEVEL') else "INFO")
+
+    # Task 4.2: 파일 핸들러 설정
+    root_logger = logging.getLogger()
+    setup_file_handlers(root_logger)
+
     logger.info("FastAPI 서버 시작")
     struct_logger.info("server_startup", version="1.0.0", environment=settings.ENVIRONMENT if hasattr(settings, 'ENVIRONMENT') else "development")
+
+    # Task 4.1: 스케줄러 시작
+    scheduler = create_scheduler()
+    register_jobs(scheduler)
+    scheduler.start()
+    logger.info("APScheduler 시작됨")
+
     yield
+
     # Shutdown
+    if scheduler:
+        scheduler.shutdown()
+        logger.info("APScheduler 종료됨")
     logger.info("FastAPI 서버 종료")
     struct_logger.info("server_shutdown")
 
@@ -64,6 +87,7 @@ app.include_router(search.router, prefix="/api/v1/search", tags=["Search"])
 app.include_router(documents.router, prefix="/api/v1/documents", tags=["Documents"])
 app.include_router(users.router, prefix="/api/v1/users", tags=["Users"])
 app.include_router(feedback.router, prefix="/api/v1/feedback", tags=["Feedback"])
+app.include_router(admin.router, prefix="/api/v1", tags=["Admin"])
 
 
 @app.get("/")

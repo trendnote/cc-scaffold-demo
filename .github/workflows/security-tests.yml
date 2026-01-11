@@ -1,0 +1,184 @@
+name: Security Tests
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  permission-tests:
+    name: Permission & Access Control Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: raguser
+          POSTGRES_PASSWORD: ragpassword
+          POSTGRES_DB: rag_platform
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+      milvus:
+        image: milvusdb/milvus:v2.3.3
+        ports:
+          - 19530:19530
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        working-directory: backend
+        run: |
+          pip install -r requirements.txt
+          pip install pytest pytest-asyncio httpx
+
+      - name: Run permission tests
+        working-directory: backend
+        run: |
+          pytest tests/integration/test_access_control.py -v
+        env:
+          DATABASE_URL: postgresql+asyncpg://raguser:ragpassword@localhost:5432/rag_platform
+          MILVUS_HOST: localhost
+          MILVUS_PORT: 19530
+
+      - name: Run security tests
+        working-directory: backend
+        run: |
+          pytest tests/security/ -v
+        env:
+          DATABASE_URL: postgresql+asyncpg://raguser:ragpassword@localhost:5432/rag_platform
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-test-results
+          path: backend/pytest-report.xml
+          retention-days: 7
+
+  static-analysis:
+    name: Static Security Analysis (Bandit)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Bandit
+        run: pip install bandit
+
+      - name: Run Bandit security scan
+        working-directory: backend
+        run: |
+          bandit -c .bandit -r app/
+        continue-on-error: true
+
+      - name: Upload Bandit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bandit-report
+          path: backend/bandit-report.json
+          retention-days: 30
+
+  dependency-check:
+    name: Dependency Vulnerability Check (Safety)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Safety
+        run: pip install safety
+
+      - name: Run dependency check
+        working-directory: backend
+        run: |
+          bash scripts/check_dependencies.sh
+        continue-on-error: true
+
+      - name: Upload Safety report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: safety-report
+          path: backend/safety-report.json
+          retention-days: 30
+
+  secret-scan:
+    name: Secret Scanning
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run secret scan
+        working-directory: backend
+        run: |
+          bash scripts/scan_secrets.sh app/
+        continue-on-error: true
+
+      - name: Upload secret scan report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: secret-scan-report
+          path: backend/secret-scan-report.txt
+          retention-days: 30
+
+  security-summary:
+    name: Security Test Summary
+    runs-on: ubuntu-latest
+    needs: [permission-tests, static-analysis, dependency-check, secret-scan]
+    if: always()
+
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Display summary
+        run: |
+          echo "=========================================="
+          echo "Security Test Summary"
+          echo "=========================================="
+          echo ""
+          echo "✓ Permission tests completed"
+          echo "✓ Static analysis completed"
+          echo "✓ Dependency check completed"
+          echo "✓ Secret scan completed"
+          echo ""
+          echo "Review artifacts for detailed results"

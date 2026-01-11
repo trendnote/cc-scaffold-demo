@@ -53,7 +53,10 @@ class DocumentIndexerConfig(BaseModel):
 
     batch_size: int = Field(default=5, ge=1, le=20, description="배치 크기")
     max_retries: int = Field(default=3, ge=1, le=10, description="최대 재시도")
-    collection_name: str = Field(default="documents", description="Milvus Collection명")
+    collection_name: str = Field(
+        default_factory=lambda: os.getenv("MILVUS_COLLECTION_NAME", "rag_document_chunks"),
+        description="Milvus Collection명"
+    )
 
 
 class DocumentIndexer:
@@ -108,7 +111,7 @@ class DocumentIndexer:
 
         try:
             # Step 1: 문서 파싱
-            parser = DocumentParserFactory.create_parser(file_path)
+            parser = DocumentParserFactory.get_parser(file_path)
             parsed_doc = parser.parse(file_path)
 
             logger.info(
@@ -287,16 +290,17 @@ class DocumentIndexer:
 
         try:
             # Collection에 맞는 형식으로 데이터 구성
+            # Schema: document_id, content, embedding, chunk_index, metadata
             insert_data = [
                 [document_id] * len(chunks),  # document_id (repeated)
-                list(range(len(chunks))),      # chunk_index
                 [chunk.content for chunk in chunks],  # content
                 embeddings,                    # embedding (List[List[float]])
-                [chunk.page_number or 1 for chunk in chunks],  # page_number
+                list(range(len(chunks))),      # chunk_index
                 [{
                     "document_title": chunk.document_title or "",
                     "chunk_length": len(chunk.content),
-                    "total_chunks": len(chunks)
+                    "total_chunks": len(chunks),
+                    "page_number": chunk.page_number or 1
                 } for chunk in chunks]  # metadata
             ]
 

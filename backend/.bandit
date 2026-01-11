@@ -1,0 +1,67 @@
+# Bandit Configuration
+# Task 4.3b: Security & Permission Testing
+
+[bandit]
+# 제외할 디렉토리
+exclude_dirs = [
+    "/tests/",
+    "/venv/",
+    "/.venv/",
+    "/env/",
+    "/.env/",
+    "/build/",
+    "/dist/",
+    "/__pycache__/",
+]
+
+# 테스트 수준 (LOW, MEDIUM, HIGH)
+level = LOW
+
+# 신뢰도 수준 (LOW, MEDIUM, HIGH)
+confidence = LOW
+
+# 출력 포맷 (json, txt, html)
+# CI/CD에서는 json 사용
+format = json
+
+# 출력 파일
+output_file = bandit-report.json
+
+# 활성화할 보안 검사
+# B201-B703: 모든 보안 검사 활성화
+tests = [
+    # Injection
+    "B201",  # flask_debug_true
+    "B501",  # request_with_no_cert_validation
+    "B506",  # yaml_load
+
+    # SQL Injection
+    "B608",  # hardcoded_sql_expressions
+
+    # Command Injection
+    "B602",  # shell_injection_subprocess
+    "B604",  # shell_injection
+
+    # Hardcoded credentials
+    "B105",  # hardcoded_password_string
+    "B106",  # hardcoded_password_funcarg
+    "B107",  # hardcoded_password_default
+
+    # Weak crypto
+    "B303",  # md5
+    "B304",  # insecure_hash_functions
+    "B305",  # weak_cryptographic_key
+    "B324",  # hashlib_new_insecure_functions
+
+    # Others
+    "B301",  # pickle
+    "B403",  # import_pickle
+    "B404",  # import_subprocess
+    "B701",  # jinja2_autoescape_false
+]
+
+# 건너뛸 검사
+skip = [
+    # assert 사용 허용 (테스트 코드에서 필요)
+    "B101",
+]

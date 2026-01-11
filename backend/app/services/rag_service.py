@@ -227,18 +227,18 @@ class RAGService:
             str: 생성된 답변
 
         Raises:
-            TimeoutError: 30초 타임아웃
+            TimeoutError: 60초 타임아웃
             ValueError: LLM 생성 실패
         """
-        logger.info("LLM 답변 생성 시작 (타임아웃: 30초)")
+        logger.info("LLM 답변 생성 시작 (타임아웃: 60초)")
 
         def timeout_handler(signum, frame):
-            raise TimeoutError("LLM 답변 생성 타임아웃 (30초)")
+            raise TimeoutError("LLM 답변 생성 타임아웃 (60초)")
 
         try:
-            # Timeout 설정 (30초)
+            # Timeout 설정 (60초)
             signal.signal(signal.SIGALRM, timeout_handler)
-            signal.alarm(30)
+            signal.alarm(60)
 
             try:
                 answer = self.llm_provider.generate(prompt)

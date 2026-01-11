@@ -5,11 +5,8 @@ JWT 토큰 생성 및 검증
 from datetime import datetime, timedelta
 from typing import Optional, Dict, Any
 from jose import JWTError, jwt
-from passlib.context import CryptContext
+import bcrypt
 from fastapi import HTTPException, status
-
-# 비밀번호 해싱 컨텍스트
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # JWT 설정 (환경 변수에서 로드)
 ALGORITHM = "HS256"
@@ -26,7 +23,10 @@ def get_password_hash(password: str) -> str:
     Returns:
         str: 해싱된 비밀번호
     """
-    return pwd_context.hash(password)
+    password_bytes = password.encode('utf-8')
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(password_bytes, salt)
+    return hashed.decode('utf-8')
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
@@ -40,7 +40,9 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     Returns:
         bool: 비밀번호 일치 여부
     """
-    return pwd_context.verify(plain_password, hashed_password)
+    password_bytes = plain_password.encode('utf-8')
+    hashed_bytes = hashed_password.encode('utf-8')
+    return bcrypt.checkpw(password_bytes, hashed_bytes)
 
 
 def create_access_token(

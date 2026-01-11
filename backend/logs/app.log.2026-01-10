@@ -1,0 +1,2229 @@
+파일 핸들러 설정 완료: app_log=/Users/young/Dev/workspace/cc-scaffold-demo/backend/logs/app.log, error_log=/Users/young/Dev/workspace/cc-scaffold-demo/backend/logs/error.log
+FastAPI 서버 시작
+{"version": "1.0.0", "environment": "development", "event": "server_startup", "logger": "app.main", "level": "info", "timestamp": "2026-01-10T23:03:11.264105Z"}
+APScheduler initialized
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Jobs registered successfully
+Added job "Auto Index New Documents" to job store "default"
+Scheduler started
+APScheduler 시작됨
+Request: GET /health
+Connected to Milvus at localhost:19530
+Response: 200 - 21.75ms
+Request: GET /health
+Response: 200 - 5.37ms
+Request: OPTIONS /api/v1/auth/login
+Response: 200 - 1.47ms
+Request: POST /api/v1/auth/login
+(trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+Unhandled exception: ValueError, request_id=b7ec9316-6c30-4462-a76c-e6aef45c5ee8, path=/api/v1/auth/login, method=POST
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+  |     yield
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 190, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    |     with collapse_excgroups():
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 91, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 146, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |                ^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    |     raise e
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    |     if not verify_password(request.password, user["hashed_password"]):
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    |     return pwd_context.verify(plain_password, hashed_password)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    |     return record.verify(secret, hash, **kwds)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    |     self._stub_requires_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    |     cls.set_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    |     return owner.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    |     return cls.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    |     cls._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    |     super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    |     ok = loader(**kwds)
+    |          ^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    |     return mixin_cls._finalize_backend_mixin(name, dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    |     if detect_wrap_bug(IDENT_2A):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    |     if verify(secret, bug_hash):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    |     hash = _bcrypt.hashpw(secret, config)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    with collapse_excgroups():
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    raise e
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    if not verify_password(request.password, user["hashed_password"]):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    return pwd_context.verify(plain_password, hashed_password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    return record.verify(secret, hash, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+Request: POST /api/v1/auth/login
+(trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+Unhandled exception: ValueError, request_id=c983bee5-8026-4163-ab1e-addd49d1d54a, path=/api/v1/auth/login, method=POST
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+  |     yield
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 190, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    |     with collapse_excgroups():
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 91, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 146, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |                ^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    |     raise e
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    |     if not verify_password(request.password, user["hashed_password"]):
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    |     return pwd_context.verify(plain_password, hashed_password)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    |     return record.verify(secret, hash, **kwds)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    |     self._stub_requires_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    |     cls.set_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    |     return owner.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    |     return cls.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    |     cls._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    |     super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    |     ok = loader(**kwds)
+    |          ^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    |     return mixin_cls._finalize_backend_mixin(name, dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    |     if detect_wrap_bug(IDENT_2A):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    |     if verify(secret, bug_hash):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    |     hash = _bcrypt.hashpw(secret, config)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    with collapse_excgroups():
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    raise e
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    if not verify_password(request.password, user["hashed_password"]):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    return pwd_context.verify(plain_password, hashed_password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    return record.verify(secret, hash, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+Request: POST /api/v1/auth/login
+(trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+Unhandled exception: ValueError, request_id=66b459f2-a0de-4b93-bdd5-85a3fb2dd3ea, path=/api/v1/auth/login, method=POST
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+  |     yield
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 190, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    |     with collapse_excgroups():
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 91, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 146, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |                ^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    |     raise e
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    |     if not verify_password(request.password, user["hashed_password"]):
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    |     return pwd_context.verify(plain_password, hashed_password)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    |     return record.verify(secret, hash, **kwds)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    |     self._stub_requires_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    |     cls.set_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    |     return owner.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    |     return cls.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    |     cls._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    |     super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    |     ok = loader(**kwds)
+    |          ^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    |     return mixin_cls._finalize_backend_mixin(name, dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    |     if detect_wrap_bug(IDENT_2A):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    |     if verify(secret, bug_hash):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    |     hash = _bcrypt.hashpw(secret, config)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    with collapse_excgroups():
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    raise e
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    if not verify_password(request.password, user["hashed_password"]):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    return pwd_context.verify(plain_password, hashed_password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    return record.verify(secret, hash, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+Request: POST /api/v1/auth/login
+(trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+Unhandled exception: ValueError, request_id=81aa354e-29ae-4669-891e-2079104cf5cd, path=/api/v1/auth/login, method=POST
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+  |     yield
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 190, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    |     with collapse_excgroups():
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 91, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 146, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |                ^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    |     raise e
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    |     if not verify_password(request.password, user["hashed_password"]):
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    |     return pwd_context.verify(plain_password, hashed_password)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    |     return record.verify(secret, hash, **kwds)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    |     self._stub_requires_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    |     cls.set_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    |     return owner.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    |     return cls.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    |     cls._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    |     super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    |     ok = loader(**kwds)
+    |          ^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    |     return mixin_cls._finalize_backend_mixin(name, dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    |     if detect_wrap_bug(IDENT_2A):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    |     if verify(secret, bug_hash):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    |     hash = _bcrypt.hashpw(secret, config)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    with collapse_excgroups():
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    raise e
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    if not verify_password(request.password, user["hashed_password"]):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    return pwd_context.verify(plain_password, hashed_password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    return record.verify(secret, hash, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+Request: POST /api/v1/auth/login
+(trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+Unhandled exception: ValueError, request_id=52c53674-477a-4d00-b387-362a3dadb221, path=/api/v1/auth/login, method=POST
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+  |     yield
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 190, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    |     with collapse_excgroups():
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 91, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 146, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |                ^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    |     raise e
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    |     if not verify_password(request.password, user["hashed_password"]):
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    |     return pwd_context.verify(plain_password, hashed_password)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    |     return record.verify(secret, hash, **kwds)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    |     self._stub_requires_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    |     cls.set_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    |     return owner.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    |     return cls.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    |     cls._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    |     super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    |     ok = loader(**kwds)
+    |          ^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    |     return mixin_cls._finalize_backend_mixin(name, dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    |     if detect_wrap_bug(IDENT_2A):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    |     if verify(secret, bug_hash):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    |     hash = _bcrypt.hashpw(secret, config)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    with collapse_excgroups():
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    raise e
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    if not verify_password(request.password, user["hashed_password"]):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    return pwd_context.verify(plain_password, hashed_password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    return record.verify(secret, hash, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+Request: POST /api/v1/auth/login
+(trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+Unhandled exception: ValueError, request_id=9a7b1185-1338-4391-a55e-06fc14aa5d09, path=/api/v1/auth/login, method=POST
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+  |     yield
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 190, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    |     with collapse_excgroups():
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 91, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 146, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |                ^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    |     raise e
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    |     if not verify_password(request.password, user["hashed_password"]):
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    |     return pwd_context.verify(plain_password, hashed_password)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    |     return record.verify(secret, hash, **kwds)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    |     self._stub_requires_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    |     cls.set_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    |     return owner.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    |     return cls.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    |     cls._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    |     super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    |     ok = loader(**kwds)
+    |          ^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    |     return mixin_cls._finalize_backend_mixin(name, dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    |     if detect_wrap_bug(IDENT_2A):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    |     if verify(secret, bug_hash):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    |     hash = _bcrypt.hashpw(secret, config)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    with collapse_excgroups():
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    raise e
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    if not verify_password(request.password, user["hashed_password"]):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    return pwd_context.verify(plain_password, hashed_password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    return record.verify(secret, hash, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+Request: POST /api/v1/auth/login
+(trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+Unhandled exception: ValueError, request_id=58c43113-d57d-4831-84a8-8526deea7d96, path=/api/v1/auth/login, method=POST
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+  |     yield
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 190, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    |     with collapse_excgroups():
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 83, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |                ^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    |     raise e
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    |     if not verify_password(request.password, user["hashed_password"]):
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    |     return pwd_context.verify(plain_password, hashed_password)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    |     return record.verify(secret, hash, **kwds)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    |     self._stub_requires_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    |     cls.set_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    |     return owner.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    |     return cls.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    |     cls._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    |     super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    |     ok = loader(**kwds)
+    |          ^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    |     return mixin_cls._finalize_backend_mixin(name, dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    |     if detect_wrap_bug(IDENT_2A):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    |     if verify(secret, bug_hash):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    |     hash = _bcrypt.hashpw(secret, config)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    with collapse_excgroups():
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 83, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    raise e
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    if not verify_password(request.password, user["hashed_password"]):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    return pwd_context.verify(plain_password, hashed_password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    return record.verify(secret, hash, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+Request: POST /api/v1/auth/login
+(trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+Unhandled exception: ValueError, request_id=6b59dbdc-12b5-4ae3-8805-1ae7679bb8df, path=/api/v1/auth/login, method=POST
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+  |     yield
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 190, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    |     with collapse_excgroups():
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 83, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |                ^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    |     raise e
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    |     if not verify_password(request.password, user["hashed_password"]):
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    |     return pwd_context.verify(plain_password, hashed_password)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    |     return record.verify(secret, hash, **kwds)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    |     self._stub_requires_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    |     cls.set_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    |     return owner.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    |     return cls.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    |     cls._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    |     super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    |     ok = loader(**kwds)
+    |          ^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    |     return mixin_cls._finalize_backend_mixin(name, dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    |     if detect_wrap_bug(IDENT_2A):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    |     if verify(secret, bug_hash):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    |     hash = _bcrypt.hashpw(secret, config)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    with collapse_excgroups():
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 83, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    raise e
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    if not verify_password(request.password, user["hashed_password"]):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    return pwd_context.verify(plain_password, hashed_password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    return record.verify(secret, hash, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+Request: POST /api/v1/auth/login
+(trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+Unhandled exception: ValueError, request_id=376753e9-4435-4f1b-9472-946d15cf298c, path=/api/v1/auth/login, method=POST
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+  |     yield
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 190, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    |     with collapse_excgroups():
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 83, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |                ^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    |     raise e
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    |     if not verify_password(request.password, user["hashed_password"]):
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    |     password_bytes = plain_password.encode('utf-8')
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    |     return record.verify(secret, hash, **kwds)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    |     self._stub_requires_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    |     cls.set_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    |     return owner.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    |     return cls.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    |     cls._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    |     super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    |     ok = loader(**kwds)
+    |          ^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    |     return mixin_cls._finalize_backend_mixin(name, dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    |     if detect_wrap_bug(IDENT_2A):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    |     if verify(secret, bug_hash):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    |     hash = _bcrypt.hashpw(secret, config)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    with collapse_excgroups():
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 83, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    raise e
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    if not verify_password(request.password, user["hashed_password"]):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    password_bytes = plain_password.encode('utf-8')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    return record.verify(secret, hash, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+Request: POST /api/v1/auth/login
+(trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+Unhandled exception: ValueError, request_id=f8ea333b-e381-4f40-b73a-0e04be8e7abd, path=/api/v1/auth/login, method=POST
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+  |     yield
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 190, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    |     with collapse_excgroups():
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 83, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    |     raise exc
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    |     response = await func(request)
+    |                ^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    |     raise e
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    |     if not verify_password(request.password, user["hashed_password"]):
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    |     password_bytes = plain_password.encode('utf-8')
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    |     return record.verify(secret, hash, **kwds)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    |     self._stub_requires_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    |     cls.set_backend()
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    |     return owner.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    |     return cls.set_backend(name, dryrun=dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    |     cls._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    |     super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    |     ok = loader(**kwds)
+    |          ^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    |     return mixin_cls._finalize_backend_mixin(name, dryrun)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    |     if detect_wrap_bug(IDENT_2A):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    |     if verify(secret, bug_hash):
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    |     return consteq(self._calc_checksum(secret), chk)
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    |     hash = _bcrypt.hashpw(secret, config)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 189, in __call__
+    with collapse_excgroups():
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_utils.py", line 91, in collapse_excgroups
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/middleware/logging.py", line 29, in dispatch
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 165, in call_next
+    raise app_exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/cors.py", line 83, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/starlette/routing.py", line 72, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 299, in app
+    raise e
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 294, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/routers/auth.py", line 99, in login
+    if not verify_password(request.password, user["hashed_password"]):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/Dev/workspace/cc-scaffold-demo/backend/app/core/security.py", line 43, in verify_password
+    password_bytes = plain_password.encode('utf-8')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/context.py", line 2347, in verify
+    return record.verify(secret, hash, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/young/.pyenv/versions/3.12.3/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+파일 핸들러 설정 완료: app_log=/Users/young/Dev/workspace/cc-scaffold-demo/backend/logs/app.log, error_log=/Users/young/Dev/workspace/cc-scaffold-demo/backend/logs/error.log
+FastAPI 서버 시작
+{"version": "1.0.0", "environment": "development", "event": "server_startup", "logger": "app.main", "level": "info", "timestamp": "2026-01-10T23:16:07.027135Z"}
+APScheduler initialized
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Jobs registered successfully
+Added job "Auto Index New Documents" to job store "default"
+Scheduler started
+APScheduler 시작됨
+Request: POST /api/v1/auth/login
+Response: 200 - 250.06ms
+Request: OPTIONS /api/v1/auth/login
+Response: 200 - 3.18ms
+Request: POST /api/v1/auth/login
+Response: 200 - 261.41ms
+Request: OPTIONS /api/v1/users/me/history
+Response: 200 - 0.35ms
+Request: GET /api/v1/users/me/history
+히스토리 조회 API 요청: user_id=00000000-0000-0000-0000-000000000001, page=1, page_size=10
+select pg_catalog.version()
+[raw sql] ()
+select current_schema()
+[raw sql] ()
+show standard_conforming_strings
+[raw sql] ()
+BEGIN (implicit)
+SELECT count(*) AS count_1 
+FROM search_queries 
+WHERE search_queries.user_id = $1::UUID
+[generated in 0.00014s] (UUID('00000000-0000-0000-0000-000000000001'),)
+SELECT search_queries.id, search_queries.user_id, search_queries.query, search_queries.session_id, search_queries.timestamp 
+FROM search_queries 
+WHERE search_queries.user_id = $1::UUID ORDER BY search_queries.timestamp DESC 
+ LIMIT $2::INTEGER OFFSET $3::INTEGER
+[generated in 0.00018s] (UUID('00000000-0000-0000-0000-000000000001'), 10, 0)
+SELECT search_responses.id, search_responses.query_id, search_responses.answer, search_responses.sources, search_responses.performance, search_responses.response_metadata, search_responses.response_time_ms, search_responses.timestamp 
+FROM search_responses 
+WHERE search_responses.query_id = $1::UUID
+[generated in 0.00008s] (UUID('d9458581-8922-44e3-be13-4322125508ee'),)
+SELECT search_responses.id, search_responses.query_id, search_responses.answer, search_responses.sources, search_responses.performance, search_responses.response_metadata, search_responses.response_time_ms, search_responses.timestamp 
+FROM search_responses 
+WHERE search_responses.query_id = $1::UUID
+[cached since 0.003607s ago] (UUID('92b42316-0c70-4c35-9dff-98ee8bcb9db8'),)
+SELECT search_responses.id, search_responses.query_id, search_responses.answer, search_responses.sources, search_responses.performance, search_responses.response_metadata, search_responses.response_time_ms, search_responses.timestamp 
+FROM search_responses 
+WHERE search_responses.query_id = $1::UUID
+[cached since 0.004512s ago] (UUID('f7ee7580-d379-4a53-a21c-e0f6ff88270e'),)
+SELECT search_responses.id, search_responses.query_id, search_responses.answer, search_responses.sources, search_responses.performance, search_responses.response_metadata, search_responses.response_time_ms, search_responses.timestamp 
+FROM search_responses 
+WHERE search_responses.query_id = $1::UUID
+[cached since 0.005655s ago] (UUID('fcd4539c-03b5-4710-afc4-95c377d6ca37'),)
+SELECT search_responses.id, search_responses.query_id, search_responses.answer, search_responses.sources, search_responses.performance, search_responses.response_metadata, search_responses.response_time_ms, search_responses.timestamp 
+FROM search_responses 
+WHERE search_responses.query_id = $1::UUID
+[cached since 0.006444s ago] (UUID('c005ea09-d36d-46cf-aeab-35903c5fb127'),)
+SELECT search_responses.id, search_responses.query_id, search_responses.answer, search_responses.sources, search_responses.performance, search_responses.response_metadata, search_responses.response_time_ms, search_responses.timestamp 
+FROM search_responses 
+WHERE search_responses.query_id = $1::UUID
+[cached since 0.007085s ago] (UUID('d3c65db0-4c2a-4682-a23e-534b2522ed15'),)
+SELECT search_responses.id, search_responses.query_id, search_responses.answer, search_responses.sources, search_responses.performance, search_responses.response_metadata, search_responses.response_time_ms, search_responses.timestamp 
+FROM search_responses 
+WHERE search_responses.query_id = $1::UUID
+[cached since 0.007684s ago] (UUID('c85b6e21-8002-4428-a3e8-00d3cfc6c94f'),)
+SELECT search_responses.id, search_responses.query_id, search_responses.answer, search_responses.sources, search_responses.performance, search_responses.response_metadata, search_responses.response_time_ms, search_responses.timestamp 
+FROM search_responses 
+WHERE search_responses.query_id = $1::UUID
+[cached since 0.008268s ago] (UUID('93ae380d-ddf1-4023-8fec-f50eff26df2a'),)
+SELECT search_responses.id, search_responses.query_id, search_responses.answer, search_responses.sources, search_responses.performance, search_responses.response_metadata, search_responses.response_time_ms, search_responses.timestamp 
+FROM search_responses 
+WHERE search_responses.query_id = $1::UUID
+[cached since 0.008858s ago] (UUID('50981310-7c2d-4032-bcda-c657059d84fe'),)
+SELECT search_responses.id, search_responses.query_id, search_responses.answer, search_responses.sources, search_responses.performance, search_responses.response_metadata, search_responses.response_time_ms, search_responses.timestamp 
+FROM search_responses 
+WHERE search_responses.query_id = $1::UUID
+[cached since 0.009351s ago] (UUID('30bdfbc9-d59c-4bae-bc9e-44c61c47a789'),)
+히스토리 조회 완료: user_id=00000000-0000-0000-0000-000000000001, page=1, total=17, items=10
+히스토리 조회 완료: user_id=00000000-0000-0000-0000-000000000001, page=1, total=17, items=10
+COMMIT
+Response: 200 - 123.97ms

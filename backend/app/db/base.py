@@ -12,13 +12,13 @@ import os
 from typing import AsyncGenerator
 
 from dotenv import load_dotenv
-from sqlalchemy import MetaData
+from sqlalchemy import MetaData, create_engine
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
     async_sessionmaker,
     create_async_engine,
 )
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, sessionmaker, Session
 
 # Load environment variables from root .env file
 load_dotenv()
@@ -59,6 +59,28 @@ engine = create_async_engine(
 async_session_maker = async_sessionmaker(
     engine,
     class_=AsyncSession,
+    expire_on_commit=False,
+)
+
+# Alias for clarity
+AsyncSessionLocal = async_session_maker
+
+# Create synchronous engine and session for background tasks (Task 4.1)
+# Convert async URL to sync URL (postgresql+asyncpg -> postgresql+psycopg2)
+SYNC_DATABASE_URL = DATABASE_URL.replace("postgresql+asyncpg://", "postgresql://")
+sync_engine = create_engine(
+    SYNC_DATABASE_URL,
+    echo=False,  # Disable echo to defer connection
+    pool_size=5,
+    max_overflow=10,
+    pool_pre_ping=False,  # Disable pre-ping to defer connection
+    pool_recycle=3600,
+)
+
+# Create synchronous session maker
+SessionLocal = sessionmaker(
+    bind=sync_engine,
+    class_=Session,
     expire_on_commit=False,
 )
 
